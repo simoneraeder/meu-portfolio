@@ -60,32 +60,9 @@ O código também foi versionado e publicado no GitHub.<p>
 <p>Projeto de modernização de infraestrutura focado no desacoplamento da camada de dados de uma aplicação web em pilha LAMP (Linux, Apache, MariaDB, PHP) rodando em uma instância Amazon EC2, migrando a base para um serviço gerenciado Amazon RDS (MariaDB) em sub-redes privadas.
 
 🛠️ Tecnologias & Serviços Utilizados
-AWS Cloud: Amazon RDS (MariaDB 12.3), Amazon EC2, Amazon VPC (Subnets Privadas e Security Groups), AWS Systems Manager (Parameter Store), Amazon CloudWatch.
+AWS Cloud: Amazon RDS (MariaDB 12.3), Amazon EC2, Amazon VPC (Subnets Privadas e Security Groups), AWS Systems Manager (Parameter Store), Amazon CloudWatch. Ferramentas & Linguagens: AWS CLI v2, MariaDB / SQL, mysqldump, Linux (Bash), Git/GitHub.</p>
 
-Ferramentas & Linguagens: AWS CLI v2, MariaDB / SQL, mysqldump, Linux (Bash), Git/GitHub.
-
-💡 Desafios Técnicos & Soluções Aplicadas
-Desacoplamento e Segurança de Rede:
-
-Provisionamento de sub-redes privadas em múltiplas Zonas de Disponibilidade (AZs).
-
-Restrição de acesso ao banco via Security Group (CafeDatabaseSG), liberando a porta 3306 exclusivamente para a sub-rede da aplicação web.
-
-Troubleshooting de Conexão (SSL/TLS):
-
-Problema: A aplicação PHP legada apresentou falhas de comunicação devido ao parâmetro padrão require_secure_transport=ON do RDS.
-
-Solução: Criação de um DB Parameter Group customizado redefinindo a regra para require_secure_transport=0, restabelecendo a comunicação sem necessidade de refatorar o código-fonte da aplicação.
-
-Migração, Validação e Gerenciamento Dinâmico:
-
-Extração e restauração da base de dados com mysqldump e validação da integridade do histórico de pedidos através de queries SQL com JOINs no terminal.
-
-Atualização centralizada e dinâmica do endpoint do banco através do AWS Systems Manager Parameter Store (/cafe/dbUrl).
-
-Acompanhamento de métricas de uso e conexões ativas no Amazon CloudWatch (DatabaseConnections).
-</p>
-        <a href="https://github.com/simoneraeder/aws-rds-migration-cafe" target="_blank">Ver Projeto</a>
+<a href="https://github.com/simoneraeder/aws-rds-migration-cafe" target="_blank">Ver Projeto</a>
       </article>
 
        <article class="card">
